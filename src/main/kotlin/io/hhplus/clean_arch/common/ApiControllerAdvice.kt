@@ -1,7 +1,5 @@
 package io.hhplus.clean_arch.common
 
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -12,13 +10,19 @@ data class ErrorResponse(val error: String, val message: String)
 
 @RestControllerAdvice
 class ApiControllerAdvice : ResponseEntityExceptionHandler() {
-    private val logger: Logger = LoggerFactory.getLogger(javaClass)
-
     @ExceptionHandler(Exception::class)
+    fun handleException(e: Exception): ResponseEntity<ErrorResponse> {
+        return ResponseEntity(
+            ErrorResponse("500", "에러가 발생했습니다."),
+            HttpStatus.INTERNAL_SERVER_ERROR,
+        )
+    }
+
+    @ExceptionHandler(CustomException::class)
     fun handleException(e: CustomException): ResponseEntity<ErrorResponse> {
         return ResponseEntity(
             ErrorResponse(e.type.resultCode, e.type.resultMessage),
-            HttpStatus.INTERNAL_SERVER_ERROR,
+            e.type.status,
         )
     }
 }

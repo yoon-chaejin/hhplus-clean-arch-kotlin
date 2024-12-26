@@ -1,9 +1,10 @@
 package io.hhplus.clean_arch.repository
 
+import io.hhplus.clean_arch.common.CustomException
+import io.hhplus.clean_arch.common.CustomExceptionType
 import io.hhplus.clean_arch.domain.Lecture
 import io.hhplus.clean_arch.domain.LectureRepository
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -16,7 +17,7 @@ class LectureRepositoryImpl(
     }
 
     override fun getLectureById(id: Long): Lecture {
-        return lectureJpaRepository.findByIdOrNull(id)!!
+        return lectureJpaRepository.findByIdOrNullForUpdate(id)?: throw CustomException(CustomExceptionType.LECTURE_NOT_FOUND)
     }
 
     override fun getRegisteredLecturesByUserId(userId: Long): List<Lecture> {
