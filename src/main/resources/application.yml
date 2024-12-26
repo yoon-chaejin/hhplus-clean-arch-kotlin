@@ -1,2 +1,20 @@
-spring.application.name=clean-arch
-
+spring:
+  # JDBC 설정
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/lecture-service
+    username: sa
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  # JPA 설정
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create-drop
+    show_sql: true
+    generate-ddl: on
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  sql:
+    init:
+      mode: always
+      data-locations:
+        - classpath:sql/data.sql
