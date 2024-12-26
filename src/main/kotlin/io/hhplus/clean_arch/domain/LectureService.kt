@@ -15,8 +15,8 @@ class LectureService (
         return lectureRepository.save(lecture.register(userId, at))
     }
 
-    fun getAvailableLectures(at: Timestamp): List<Lecture> {
-        return lectureRepository.getLectures().filter { it.isAvailable(at) }
+    fun getAvailableLectures(from: Timestamp, to: Timestamp, at: Timestamp): List<Lecture> {
+        return lectureRepository.getLecturesByLectureAtBetween(from, to).filter { it.isAvailable(at) }
     }
 
     fun getRegisteredLectures(userId: Long): List<Lecture> {

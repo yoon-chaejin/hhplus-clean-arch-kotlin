@@ -3,9 +3,10 @@ package io.hhplus.clean_arch.repository
 import io.hhplus.clean_arch.common.TimestampFactory
 import io.hhplus.clean_arch.domain.Lecture
 import io.hhplus.clean_arch.domain.LectureRepository
+import java.sql.Timestamp
 
 class LectureRepositoryStub : LectureRepository {
-    override fun getLectures(): List<Lecture> {
+    override fun getLecturesByLectureAtBetween(from: Timestamp, to: Timestamp): List<Lecture> {
         return listOf(
             Lecture(
                 id = 1L,
@@ -24,7 +25,7 @@ class LectureRepositoryStub : LectureRepository {
                 id = 3L,
                 title = "특강일시가 지난 강의",
                 lectureBy = 1,
-                lectureAt = TimestampFactory.of(2024, 12, 21, 15, 0, 0)
+                lectureAt = TimestampFactory.of(2024, 12, 28, 5, 0, 0)
             )
         )
     }

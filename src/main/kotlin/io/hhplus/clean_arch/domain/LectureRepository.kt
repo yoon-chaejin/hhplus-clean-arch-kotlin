@@ -1,10 +1,11 @@
 package io.hhplus.clean_arch.domain
 
 import org.springframework.stereotype.Repository
+import java.sql.Timestamp
 
 @Repository
 interface LectureRepository {
-    fun getLectures(): List<Lecture>
+    fun getLecturesByLectureAtBetween(from: Timestamp, to: Timestamp): List<Lecture>
 
     fun getLectureById(id: Long): Lecture
 

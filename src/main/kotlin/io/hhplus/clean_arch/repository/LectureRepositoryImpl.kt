@@ -6,14 +6,14 @@ import io.hhplus.clean_arch.domain.Lecture
 import io.hhplus.clean_arch.domain.LectureRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
+import java.sql.Timestamp
 
 @Repository
 class LectureRepositoryImpl(
     @Autowired val lectureJpaRepository: LectureJpaRepository,
 ): LectureRepository {
-
-    override fun getLectures(): List<Lecture> {
-        return lectureJpaRepository.findAll()
+    override fun getLecturesByLectureAtBetween(from: Timestamp, to: Timestamp): List<Lecture> {
+        return lectureJpaRepository.findAllByLectureAtBetween(from, to)
     }
 
     override fun getLectureById(id: Long): Lecture {
