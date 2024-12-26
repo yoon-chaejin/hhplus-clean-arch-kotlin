@@ -4,10 +4,11 @@ import io.hhplus.clean_arch.common.TimestampFactory
 import io.hhplus.clean_arch.repository.LectureRepositoryStub
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import org.slf4j.LoggerFactory
 
 class LectureServiceTest {
-     private val lectureRepository: LectureRepository = LectureRepositoryStub()
-     private val sut = LectureService(lectureRepository)
+    private val lectureRepository: LectureRepository = LectureRepositoryStub()
+    private val sut = LectureService(lectureRepository)
 
     @Test fun `신청 가능한 강의 목록을 조회할 경우, 정원이 다 찬 강의나 특강일시가 지난 강의는 조회되지 않는다`() {
         //given

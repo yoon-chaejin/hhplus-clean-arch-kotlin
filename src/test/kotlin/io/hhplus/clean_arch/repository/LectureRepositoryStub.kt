@@ -3,7 +3,6 @@ package io.hhplus.clean_arch.repository
 import io.hhplus.clean_arch.common.TimestampFactory
 import io.hhplus.clean_arch.domain.Lecture
 import io.hhplus.clean_arch.domain.LectureRepository
-import org.springframework.stereotype.Repository
 
 class LectureRepositoryStub : LectureRepository {
     override fun getLectures(): List<Lecture> {
